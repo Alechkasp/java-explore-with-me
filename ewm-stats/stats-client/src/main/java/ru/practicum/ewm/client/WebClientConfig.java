@@ -3,6 +3,7 @@ package ru.practicum.ewm.client;
 import io.netty.channel.ChannelOption;
 import io.netty.handler.timeout.ReadTimeoutHandler;
 import io.netty.handler.timeout.WriteTimeoutHandler;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -12,8 +13,11 @@ import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 public class WebClientConfig {
-    private static final String BASE_URL = "https://localhost:9090";
-    private static final int TIMEOUT = 5000;
+    @Value("${BASE_URL}")
+    private String BASE_URL;
+
+    @Value("${TIMEOUT}")
+    private int TIMEOUT;
 
     @Bean
     public WebClient webClientWithTimeout() {
