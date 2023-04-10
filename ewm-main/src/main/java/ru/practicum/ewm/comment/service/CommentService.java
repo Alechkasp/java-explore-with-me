@@ -44,12 +44,13 @@ public class CommentService {
     public CommentDto updateComment(long userId, long commentId, UpdateCommentDto updateCommentDto) {
         checkUser(userId);
         Comment comment = checkComment(commentId);
+        boolean isCommentCreatedMoreThanHourEarlier = LocalDateTime.now().isAfter(comment.getCreatedOn().plusHours(1));
 
         if (comment.getUser().getId() != userId) {
             throw new ConflictException("Only author of comment can edit it");
         }
 
-        if (LocalDateTime.now().isAfter(comment.getCreatedOn().plusHours(1))) {
+        if (isCommentCreatedMoreThanHourEarlier) {
             throw new ConflictException("Comment editing is available within 1 hour after creation");
         }
 
