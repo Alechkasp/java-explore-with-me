@@ -3,8 +3,8 @@
 https://github.com/Alechkasp/java-explore-with-me/pull/5 
 
 Реализовано:
-- сервис статистики действий пользователей;
-- основной сервис по работе с мероприятиями.
+- Main service - основной сервис;
+- Stat service - сервис статистики.
 
 # Main service:
 ### Public: Подборки событий - Публичный API для работы с подборками событий
@@ -108,3 +108,12 @@ https://github.com/Alechkasp/java-explore-with-me/pull/5
 
 /admin/compilations/{compId} - обновить информацию о подборке
 
+# Stat service:
+### StatsController - API для работы со статистикой посещений
+:large_blue_circle: **GET** 
+
+/stats - получение статистики по посещениям
+
+:green_circle: **POST**
+
+/hit - сохранение информации о том, что к эндпоинту был запрос
